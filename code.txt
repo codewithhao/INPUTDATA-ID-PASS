@@ -1,0 +1,37 @@
+// Tạo bảng dữ liệu lên DataTable
+DataTable dt = new DataTable()
+//gvLDPlayer.RowHeadersVisible = false; Ẩn cột đầu tiên
+//gvLDPlayer.Columns[0].Visible = false; Ẩn 1 cột bất kỳ
+dt.Columns.Add("STT", typeof(int));
+dt.Columns.Add("Tên máy", typeof(string));
+dt.Columns.Add("Trạng thái", typeof(string));
+dt.Columns.Add("Tài khoản", typeof(string));
+//gvLDPlayer.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Căn giữa các header
+//gvLDPlayer.Columns[0].Width = 50;
+//gvLDPlayer.Columns[1].Width = 150;
+//gvLDPlayer.DataSource = dt;
+gclayer.DataSource = dt;
+gvLayer.OptionsView.ShowIndicator = false; // Ẩn cột đầu tiên
+gvLayer.Columns[0].OptionsColumn.ReadOnly = true;
+gvLayer.Columns[1].OptionsColumn.ReadOnly = true;
+gvLayer.Columns[2].OptionsColumn.ReadOnly = true;
+gvLayer.Columns[3].OptionsColumn.ReadOnly = true;
+gvLayer.Columns[0].OptionsColumn.AllowEdit = false;
+gvLayer.Columns[1].OptionsColumn.AllowEdit = false;
+gvLayer.Columns[2].OptionsColumn.AllowEdit = false;
+gvLayer.Columns[3].OptionsColumn.AllowEdit = false;
+gvLayer.Columns[0].Width = 50;
+gvLayer.Columns[1].Width = 100;
+gvLayer.Columns[3].Width = 100;
+string[] lines = File.ReadAllLines(Application.StartupPath + "\\data\\" + "\\setting\\" + @"list2.txt");
+string[] value;
+for(int i =0; i< lines.Length; i++)
+{
+value = lines[i].ToString().Split(',');
+string[] row = new string[value.Length];
+for(int j = 0; j <value.Length; j++)
+{
+row[j] = value[j].Trim();
+}
+dt.Rows.Add(row);
+}
